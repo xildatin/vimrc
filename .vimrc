@@ -5,10 +5,15 @@
 "
 "		 make sure to have universal ctags installed
 "		 	OSX: brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-"		 
+"
 "		 Universal tags will conflict with previously installed versions of
 "		 ctags.  As a result, you may wish to add a CTAGS_HOME environment
 "		 variable and then add the bin/ directory to universal tags	to your PATH
+"
+"		 Universal ctags does not read from the ~/.ctags file, instead it will
+"		 read from ~/.ctags.d/<lang>.ctags files.  For example, scala is not
+"		 a supported language, therefore a language definitioon file must exist
+"		 as ~/.ctags.d/scala.ctags, where the language definition exists.
 "
 "		 Run ctags to create the index of tokens and definitions as a `tags`
 "		 file, usually at the top level of your project.  Also be sure to add
@@ -112,6 +117,10 @@ Plugin 'kshenoy/vim-signature'
 " Show tags in sidebar
 Plugin 'majutsushi/tagbar'
 
+" Make parenthesis colorful
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 0 "set to 0 if you want to enable it later via  :RanbowToggle
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -151,3 +160,6 @@ colorscheme jellybeans
 " Sets vim's updatetimer to 100ms, default is 4000 (4 seconds), so commands
 " like gitgutter appear to not be updating
 set updatetime=100
+
+" Sets up defaults for tags/ctags
+set tags=tags;/  
