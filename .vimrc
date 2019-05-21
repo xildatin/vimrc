@@ -58,9 +58,21 @@ Plugin 'shougo/deoplete.nvim'
 " Activate deoplete by default
 let g:deoplete#enable_at_startup = 1
 
+"""  Color Schemes
 " Papercolor Scheme
 Plugin 'NLKNguyen/papercolor-theme'
 " let g:PaperColor_Light_Override = { 'background' : '#abcdef', 'cursorline' : '#dfdfff', 'matchparen' : '#d6d6d6' , 'comment' : '#8e908c' }
+
+" Challenger Deep Scheme
+Plugin 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+
+" Jellybeans
+Plugin 'nanotech/jellybeans.vim'
+
+" Mirodark
+Plugin 'djjcast/mirodark'
+
+""" End Color Schemes
 
 " Tabline Plugin
 Plugin 'itchyny/lightline.vim'
@@ -133,9 +145,9 @@ autocmd Filetype scala setlocal ts=2 sw=2 expandtab
 " background may be set to light or dark
 set t_Co=256   " This is may or may not needed.
 
-set background=light
-colorscheme PaperColor
+set background=dark
+colorscheme jellybeans
 
 " Sets vim's updatetimer to 100ms, default is 4000 (4 seconds), so commands
 " like gitgutter appear to not be updating
-set updatetime=300
+set updatetime=100
