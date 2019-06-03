@@ -163,3 +163,9 @@ set updatetime=100
 
 " Sets up defaults for tags/ctags
 set tags=tags;/  
+
+" Sets closing brace and parenthesis when an opening equivalent is used
+" And <CR> is tyhped immediately afterwards
+inoremap {<CR> {<CR>}<Esc>ko<tab>
+inoremap (<CR> (<CR>)<Esc>ko<tab>
+inoremap [<CR> [<CR>]<Esc>ko<tab>
