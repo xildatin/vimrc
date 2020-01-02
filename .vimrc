@@ -19,7 +19,7 @@
 "		 file, usually at the top level of your project.  Also be sure to add
 "		 `tags` to the .gitignore
 "
-"		 Run :PluginInstall to install the plugins from within vim
+"		 Run :PlugInstall to install the plugins from within vim
 "
 set tabstop=4
 set nu
@@ -29,65 +29,50 @@ set laststatus=2
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" start Plug plugins
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" 	Plugin 'tpope/vim-fugitive'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" 	Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" 	Plugin 'rstacruz/sparkup', {'rtp': 'vim/'} Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+" Language Server
+Plug 'derekwyatt/vim-scala'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ckipp01/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 
 " plugin nerdtree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " plugin vim-scala 
-Plugin 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala'
 
 " Code completion with deoplete
-Plugin 'shougo/deoplete.nvim'
+Plug 'shougo/deoplete.nvim'
 " Activate deoplete by default
 let g:deoplete#enable_at_startup = 1
 
 """  Color Schemes
 " Papercolor Scheme
-Plugin 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme'
 " let g:PaperColor_Light_Override = { 'background' : '#abcdef', 'cursorline' : '#dfdfff', 'matchparen' : '#d6d6d6' , 'comment' : '#8e908c' }
 
 " Challenger Deep Scheme
-Plugin 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 " Jellybeans
-Plugin 'nanotech/jellybeans.vim'
+Plug 'nanotech/jellybeans.vim'
 
 " Mirodark
-Plugin 'djjcast/mirodark'
+Plug 'djjcast/mirodark'
 
 """ End Color Schemes
 
-" Tabline Plugin
-Plugin 'itchyny/lightline.vim'
+" Tabline Plug
+Plug 'itchyny/lightline.vim'
 
 " Snippet Code Completion
 " Track the snippet engine.
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -101,42 +86,36 @@ let g:UltiSnipsEditSplit="vertical"
 " `pip install neovim`
 
 " Fuzzy File Finder with CtrlP
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Git Gutter to display Git change tracking
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " only track up to 'x' signs, in order to keep vim performant
 let g:gitgutter_max_signs = 300
 
 " Mark finder with "Peekaboo" finder
-Plugin 'Yilin-Yang/vim-markbar'
+Plug 'Yilin-Yang/vim-markbar'
 
 " I also like showing my marks in the gutter...
-Plugin 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature'
 
 " Show tags in sidebar
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 " Make parenthesis colorful
-Plugin 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 let g:rainbow_active = 0 "set to 0 if you want to enable it later via  :RanbowToggle
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" All of your Plugs must be added before the following line
+call plug#end()            	 " required
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+filetype plugin indent on    " required
 
-
+""""
+" Put your non-Plug stuff after this line
+""""
 
 " Set NERDTree mapping
 nmap <F12> :NERDTreeToggle<CR>
@@ -149,6 +128,8 @@ nnoremap <leader>. :CtrlPTag<cr>
 
 " for scala
 autocmd Filetype scala setlocal ts=2 sw=2 expandtab
+" Configuration for vim-scala
+au BufRead,BufNewFile *.sbt set filetype=scala
 
 " Papercolor Scheme
 " background may be set to light or dark
